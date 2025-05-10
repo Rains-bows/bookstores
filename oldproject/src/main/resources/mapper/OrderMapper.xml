@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.oldproject.Mapper.OrderMapper">
+
+    <select id="getAllOrders" resultType="com.example.oldproject.PoJo.Order">
+        SELECT * FROM orders
+    </select>
+
+    <select id="getOrderById" parameterType="int" resultType="com.example.oldproject.PoJo.Order">
+        SELECT * FROM orders WHERE id = #{id}
+    </select>
+
+    <insert id="createOrder" parameterType="com.example.oldproject.PoJo.Order">
+        INSERT INTO orders (id,user_id, total_amount, status, created_at, updated_at)
+        VALUES (#{id},#{userId}, #{totalAmount}, #{status}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <update id="updateOrder" parameterType="com.example.oldproject.PoJo.Order">
+        UPDATE orders
+        <set>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="totalAmount != null">total_amount = #{totalAmount},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updatedAt != null">updated_at = #{updatedAt},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteOrder" parameterType="string">
+        DELETE FROM orders WHERE id = #{id}
+    </delete>
+
+    <select id="findByStatus" resultType="com.example.oldproject.PoJo.Order">
+        SELECT * FROM orders 
+        WHERE status = #{status} 
+        AND user_id = #{userId}
+        ORDER BY created_at DESC
+    </select>
+
+    <!-- 根据用户ID查询订单 -->
+    <select id="findByUserId" resultType="com.example.oldproject.PoJo.Order">
+        SELECT 
+            o.id,
+            o.user_id as userId,
+            o.total_amount as totalAmount,
+            o.status,
+            o.created_at as createdAt,
+            o.updated_at as updatedAt
+        FROM orders o
+        WHERE o.user_id = #{userId}
+        ORDER BY o.created_at DESC
+    </select>
+
+</mapper>

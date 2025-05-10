@@ -1,0 +1,1 @@
+import{r as e}from"./request.D0Ryayp7.js";const r=(r=1,a=10)=>e({url:"/products/page",method:"GET",params:{pageNum:r,pageSize:a}}),a=r=>e({url:`/products/${r}`,method:"GET"}),s=()=>e({url:"/categories",method:"GET"}),o=(r,a=1,s=10)=>e({url:"/products/search",method:"GET",params:{keyword:r.trim(),pageNum:a,pageSize:s}});export{s as a,a as b,r as g,o as s};

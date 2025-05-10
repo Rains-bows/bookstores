@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@dcloudio/uni-ui": "^1.5.7",
+    "area-data": "^5.0.6",
+    "element-china-area-data": "^6.1.0",
+    "element-plus": "^2.9.3",
+    "qrcode": "^1.5.4"
+  }
+}

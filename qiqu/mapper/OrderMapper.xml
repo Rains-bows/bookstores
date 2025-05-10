@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.oldproject.Mapper.OrderMapper">
+    <select id="getAllOrders" resultType="com.example.oldproject.Entity.Order">
+        SELECT * FROM orders ORDER BY created_at DESC
+    </select>
+
+    <select id="getOrderById" parameterType="String" resultType="com.example.oldproject.Entity.Order">
+        SELECT * FROM orders WHERE id = #{id}
+    </select>
+
+    <insert id="createOrder" parameterType="com.example.oldproject.Entity.Order">
+        INSERT INTO orders (
+            id, user_id, total_amount, status, 
+            created_at, updated_at, delivery_type, 
+            delivery_fee, payment_method, address_id
+        )
+        VALUES (
+            #{id}, #{userId}, #{totalAmount}, #{status}, 
+            #{createdAt}, #{updatedAt}, #{deliveryType}, 
+            #{deliveryFee}, #{paymentMethod}, #{addressId}
+        )
+    </insert>
+
+    <update id="updateOrder" parameterType="com.example.oldproject.Entity.Order">
+        UPDATE orders
+        SET user_id = #{userId},
+            total_amount = #{totalAmount},
+            status = #{status},
+            updated_at = #{updatedAt},
+            delivery_type = #{deliveryType},
+            delivery_fee = #{deliveryFee},
+            payment_method = #{paymentMethod},
+            address_id = #{addressId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteOrder" parameterType="String">
+        DELETE FROM orders WHERE id = #{id}
+    </delete>
+
+    <select id="getOrdersByStatus" resultType="com.example.oldproject.Entity.Order">
+        SELECT * FROM orders WHERE status = #{status} ORDER BY created_at DESC
+    </select>
+
+    <select id="getOrdersByUserId" resultType="com.example.oldproject.Entity.Order">
+        SELECT * FROM orders WHERE user_id = #{userId} ORDER BY created_at DESC
+    </select>
+
+    <!-- 获取用户订单列表 -->
+    <select id="getOrderList" resultType="com.example.oldproject.Entity.Order">
+        SELECT * FROM orders WHERE user_id = #{userId}
+    </select>
+
+    <!-- 获取订单详情 -->
+    <select id="getOrderDetail" resultType="com.example.oldproject.Entity.Order">
+        SELECT * FROM orders WHERE id = #{id}
+    </select>
+
+    <!-- 更新订单状态 -->
+    <update id="updateOrderStatus">
+        UPDATE orders 
+        SET status = #{status}, updated_at = #{updatedAt}
+        WHERE id = #{id}
+    </update>
+</mapper> 

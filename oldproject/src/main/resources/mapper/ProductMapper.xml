@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.oldproject.Mapper.ProductMapper">
+
+    <!-- 插入商品 -->
+    <insert id="insertProduct" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO product (name, description, price, category_id, image, stock, is_active)
+        VALUES (#{name}, #{description}, #{price}, #{categoryId}, #{image}, #{stock}, #{isActive})
+    </insert>
+
+    <!-- 查询所有商品 -->
+    <select id="findAll" resultType="com.example.oldproject.PoJo.Product">
+        SELECT * FROM product
+    </select>
+
+    <!-- 根据ID查询商品 -->
+    <select id="findById" resultType="com.example.oldproject.PoJo.Product">
+        SELECT * FROM product WHERE id = #{id}
+    </select>
+    <select id="findByPage" resultType="com.example.oldproject.PoJo.Product">
+        SELECT * FROM product
+                          LIMIT #{offset}, #{pageSize}
+    </select>
+    <!-- 更新商品 -->
+    <update id="updateProduct">
+        UPDATE product
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="image != null">image = #{image},</if>
+            <if test="stock != null">stock = #{stock},</if>
+            <if test="isActive != null">is_active = #{isActive},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除商品 -->
+    <delete id="deleteProduct">
+        DELETE FROM product WHERE id = #{id}
+    </delete>
+
+    <!-- 根据关键字搜索商品 -->
+    <select id="searchByKeyword" resultType="com.example.oldproject.PoJo.Product">
+        SELECT *
+        FROM product
+        WHERE name LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{offset}, #{size}
+    </select>
+</mapper>

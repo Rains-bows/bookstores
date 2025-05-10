@@ -1,0 +1,1 @@
+import{r}from"./request.QWExmb5c.js";function t(){return r({url:"/categories",method:"GET"})}function e(t){return r({url:"/categories",method:"POST",data:t})}function o(t,e){return r({url:`/categories/${t}`,method:"PUT",data:e})}function u(t){return r({url:`/categories/${t}`,method:"DELETE"})}export{e as c,u as d,t as g,o as u};

@@ -1,0 +1,79 @@
+{
+  "hash": "ec595e5e",
+  "configHash": "78f8604a",
+  "lockfileHash": "430541ee",
+  "browserHash": "2483055b",
+  "optimized": {
+    "echarts": {
+      "src": "../../../../../node_modules/echarts/index.js",
+      "file": "echarts.js",
+      "fileHash": "f92c2952",
+      "needsInterop": false
+    },
+    "echarts/core": {
+      "src": "../../../../../node_modules/echarts/core.js",
+      "file": "echarts_core.js",
+      "fileHash": "8719168d",
+      "needsInterop": false
+    },
+    "echarts/charts": {
+      "src": "../../../../../node_modules/echarts/charts.js",
+      "file": "echarts_charts.js",
+      "fileHash": "037b786e",
+      "needsInterop": false
+    },
+    "echarts/components": {
+      "src": "../../../../../node_modules/echarts/components.js",
+      "file": "echarts_components.js",
+      "fileHash": "91120f45",
+      "needsInterop": false
+    },
+    "echarts/renderers": {
+      "src": "../../../../../node_modules/echarts/renderers.js",
+      "file": "echarts_renderers.js",
+      "fileHash": "ed890129",
+      "needsInterop": false
+    },
+    "openai": {
+      "src": "../../../../../node_modules/openai/index.mjs",
+      "file": "openai.js",
+      "fileHash": "a56d07fc",
+      "needsInterop": false
+    },
+    "lodash": {
+      "src": "../../../../../node_modules/lodash/lodash.js",
+      "file": "lodash.js",
+      "fileHash": "cfb72c1b",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-GQYUBM2S": {
+      "file": "chunk-GQYUBM2S.js"
+    },
+    "chunk-VVIFLALR": {
+      "file": "chunk-VVIFLALR.js"
+    },
+    "chunk-C2QOTPGJ": {
+      "file": "chunk-C2QOTPGJ.js"
+    },
+    "chunk-Y3NWFDPJ": {
+      "file": "chunk-Y3NWFDPJ.js"
+    },
+    "chunk-UWPTATB2": {
+      "file": "chunk-UWPTATB2.js"
+    },
+    "chunk-DQXIUHOE": {
+      "file": "chunk-DQXIUHOE.js"
+    },
+    "chunk-WXXO2QDL": {
+      "file": "chunk-WXXO2QDL.js"
+    },
+    "chunk-HU3CUHXO": {
+      "file": "chunk-HU3CUHXO.js"
+    },
+    "chunk-P2LSHJDD": {
+      "file": "chunk-P2LSHJDD.js"
+    }
+  }
+}

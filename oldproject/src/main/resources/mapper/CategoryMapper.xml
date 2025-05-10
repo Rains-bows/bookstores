@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.oldproject.Mapper.CategoryMapper">
+    
+    <!-- 基础的分类结果映射 -->
+    <resultMap id="CategoryMap" type="com.example.oldproject.PoJo.Category">
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
+        <result property="description" column="c_description"/>
+        <result property="isActive" column="c_is_active"/>
+        <collection property="products" ofType="com.example.oldproject.PoJo.Product">
+            <id property="id" column="p_id"/>
+            <result property="name" column="p_name"/>
+            <result property="description" column="p_description"/>
+            <result property="price" column="p_price"/>
+            <result property="image" column="p_image"/>
+            <result property="stock" column="p_stock"/>
+            <result property="isActive" column="p_is_active"/>
+            <result property="categoryId" column="p_category_id"/>
+        </collection>
+    </resultMap>
+
+    <!-- 插入分类 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO category (name, description, is_active)
+        VALUES (#{name}, #{description}, #{isActive})
+    </insert>
+
+    <!-- 查询所有分类及其商品 -->
+    <select id="selectAll" resultMap="CategoryMap">
+        SELECT 
+            c.id as c_id,
+            c.name as c_name,
+            c.description as c_description,
+            c.is_active as c_is_active,
+            p.id as p_id,
+            p.name as p_name,
+            p.description as p_description,
+            p.price as p_price,
+            p.image as p_image,
+            p.stock as p_stock,
+            p.is_active as p_is_active,
+            p.category_id as p_category_id
+        FROM category c
+        LEFT JOIN product p ON c.id = p.category_id AND p.is_active = 1
+        WHERE c.is_active = 1
+        ORDER BY c.id, p.id
+    </select>
+
+    <!-- 根据ID查询分类及其商品 -->
+    <select id="selectById" resultMap="CategoryMap">
+        SELECT 
+            c.id as c_id,
+            c.name as c_name,
+            c.description as c_description,
+            c.is_active as c_is_active,
+            p.id as p_id,
+            p.name as p_name,
+            p.description as p_description,
+            p.price as p_price,
+            p.image as p_image,
+            p.stock as p_stock,
+            p.is_active as p_is_active,
+            p.category_id as p_category_id
+        FROM category c
+        LEFT JOIN product p ON c.id = p.category_id AND p.is_active = 1
+        WHERE c.id = #{id} AND c.is_active = 1
+    </select>
+
+    <!-- 更新分类 -->
+    <update id="update">
+        UPDATE category
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="isActive != null">is_active = #{isActive}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除分类 -->
+    <delete id="delete">
+        DELETE FROM category WHERE id = #{id}
+    </delete>
+</mapper> 

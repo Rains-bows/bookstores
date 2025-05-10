@@ -1,0 +1,1 @@
+import{r as a}from"./request.D0Ryayp7.js";const r=r=>a({url:"/cart",method:"POST",data:r}),t=r=>a({url:`/cart/user/${r}`,method:"GET"}),s=(r,t)=>a({url:`/cart/${r}`,method:"PUT",data:t}),e=r=>a({url:`/cart/${r}`,method:"DELETE"});export{r as a,e as d,t as g,s as u};

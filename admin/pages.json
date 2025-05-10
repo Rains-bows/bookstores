@@ -1,0 +1,93 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "后台管理系统"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "系统登录"
+			}
+		},
+		{
+			"path": "pages/product/list",
+			"style": {
+				"navigationBarTitleText": "商品管理"
+			}
+		},
+		{
+			"path": "pages/product/edit",
+			"style": {
+				"navigationBarTitleText": "商品编辑"
+			}
+		},
+		{
+			"path": "pages/order/list",
+			"style": {
+				"navigationBarTitleText": "订单管理"
+			}
+		},
+		{
+			"path": "pages/order/edit",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/category/list",
+			"style": {
+				"navigationBarTitleText": "分类管理"
+			}
+		},
+		{
+			"path": "pages/category/edit",
+			"style": {
+				"navigationBarTitleText": "编辑分类"
+			}
+		},
+		{
+			"path": "pages/category/add",
+			"style": {
+				"navigationBarTitleText": "新增分类"
+			}
+		},
+		{
+			"path" : "pages/user/user",
+			"style" : 
+			{
+				"navigationBarTitleText" : "用户信息管理"
+			}
+		},
+		{
+			"path" : "pages/server/server",
+			"style" : 
+			{
+				"navigationBarTitleText" : "服务器运行状态"
+			}
+		},
+		{
+			"path" : "pages/userAnalysis/userAnalysis",
+			"style" : 
+			{
+				"navigationBarTitleText" : "大数据分析"
+			}
+		},
+		{
+			"path" : "pages/xiaoshou/xiaoshou",
+			"style" : 
+			{
+				"navigationBarTitleText" : "销售端"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "后台管理系统",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

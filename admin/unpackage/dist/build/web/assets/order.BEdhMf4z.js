@@ -1,0 +1,1 @@
+import{r}from"./request.QWExmb5c.js";function t(){return r({url:"/orderDetails/list",method:"GET"})}function e(t,e){return r({url:`/order/${t}`,method:"PUT",data:{id:t,status:e}})}export{t as g,e as u};

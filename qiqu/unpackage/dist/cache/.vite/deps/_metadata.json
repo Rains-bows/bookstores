@@ -1,0 +1,31 @@
+{
+  "hash": "7db64bfd",
+  "configHash": "c93fce6d",
+  "lockfileHash": "917d2758",
+  "browserHash": "9c3839a7",
+  "optimized": {
+    "element-plus": {
+      "src": "../../../../../node_modules/element-plus/es/index.mjs",
+      "file": "element-plus.js",
+      "fileHash": "107db462",
+      "needsInterop": false
+    },
+    "element-china-area-data": {
+      "src": "../../../../../node_modules/element-china-area-data/dist/element-china-area-data.mjs",
+      "file": "element-china-area-data.js",
+      "fileHash": "aa7c5ca3",
+      "needsInterop": false
+    },
+    "qrcode": {
+      "src": "../../../../../node_modules/qrcode/lib/browser.js",
+      "file": "qrcode.js",
+      "fileHash": "4f7af4a2",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-MNTBHR2J": {
+      "file": "chunk-MNTBHR2J.js"
+    }
+  }
+}

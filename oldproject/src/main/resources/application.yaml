@@ -1,0 +1,37 @@
+dashscope:
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Zxd123456.
+#    url: jdbc:mysql://localhost:3306/oldpro
+    url: jdbc:mysql://mysql:3306/oldpro?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+  data:
+    redis:
+      host: redis #服务器：redis
+      port: 6379
+  mail:
+    host: smtp.163.com     # 邮件服务器地址
+    port: 25                  # 邮件服务器端口
+    username: zaihuimall@163.com  # 邮件服务器登录用户名
+    password: TVifC34SFgsXmNiu     # 邮件服务器登录密码
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# application.yml 示例
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启SQL日志
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto # 主键策略
+    mapper-locations: classpath*:/mapper/*.xml
+
+

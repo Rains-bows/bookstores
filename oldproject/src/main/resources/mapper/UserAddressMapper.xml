@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.oldproject.Mapper.UserAddressMapper">
+    <insert id="insert" parameterType="com.example.oldproject.PoJo.UserAddress" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO oldpro.user_address (user_id, address, phone, recipient_name)
+        VALUES (#{userId}, #{address}, #{phone}, #{recipientName})
+    </insert>
+
+    <select id="findById" resultType="com.example.oldproject.PoJo.UserAddress">
+        SELECT * FROM oldpro.user_address WHERE id = #{id}
+    </select>
+
+    <select id="findByUserId" resultType="com.example.oldproject.PoJo.UserAddress">
+        SELECT * FROM oldpro.user_address WHERE user_id = #{userId}
+    </select>
+
+    <update id="update" parameterType="com.example.oldproject.PoJo.UserAddress">
+        UPDATE oldpro.user_address
+        SET address = #{address}, phone = #{phone}, recipient_name = #{recipientName}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM oldpro.user_address WHERE id = #{id}
+    </delete>
+
+</mapper>

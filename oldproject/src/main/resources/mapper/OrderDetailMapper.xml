@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.oldproject.Mapper.OrderDetailMapper">
+
+    <!-- 基础订单详情查询 -->
+    <select id="getBasicOrderDetails" resultType="com.example.oldproject.PoJo.OrderDetail">
+        SELECT * FROM order_detail
+    </select>
+
+    <!-- 根据ID查询订单详情 -->
+    <select id="getOrderDetailById" parameterType="int" resultType="com.example.oldproject.PoJo.OrderDetail">
+        SELECT * FROM order_detail WHERE id = #{id}
+    </select>
+
+    <!-- 插入订单详情 -->
+    <insert id="createOrderDetail" parameterType="com.example.oldproject.PoJo.OrderDetail">
+        INSERT INTO order_detail (order_id, product_id, quantity, price, user_address_id)
+        VALUES (#{orderId}, #{productId}, #{quantity}, #{price}, #{userAddressId})
+    </insert>
+
+    <!-- 更新订单详情 -->
+    <update id="updateOrderDetail" parameterType="com.example.oldproject.PoJo.OrderDetail">
+        UPDATE order_detail
+        SET order_id = #{orderId},
+            product_id = #{productId},
+            quantity = #{quantity},
+            price = #{price},
+            user_address_id = #{userAddressId}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除订单详情 -->
+    <delete id="deleteOrderDetail" parameterType="int">
+        DELETE FROM order_detail WHERE id = #{id}
+    </delete>
+
+    <!-- 获取指定订单的详情信息 -->
+    <select id="getOrderDetailInfo" resultType="com.example.oldproject.DTO.OrderDetailDTO">
+        SELECT 
+            od.id,
+            od.order_id as orderId,
+            od.product_id as productId,
+            p.name as productName,
+            p.image as productImage,
+            p.description as productDesc,
+            od.quantity,
+            od.price,
+            (od.quantity * od.price) as totalPrice,
+            od.user_address_id as userAddressId,
+            CASE 
+                WHEN od.user_address_id = 0 THEN '自提柜'
+                WHEN ua.id IS NOT NULL THEN ua.address
+                ELSE '地址信息不存在'
+            END as addressDetail,
+            CASE 
+                WHEN od.user_address_id = 0 THEN '自提'
+                WHEN ua.id IS NOT NULL THEN ua.recipient_name
+                ELSE '收件人信息不存在'
+            END as recipientName,
+            CASE 
+                WHEN od.user_address_id = 0 THEN ''
+                WHEN ua.id IS NOT NULL THEN ua.phone
+                ELSE ''
+            END as recipientPhone,
+            o.status as orderStatus,
+            DATE_FORMAT(o.created_at, '%Y-%m-%d %H:%i:%s') as createdAt
+        FROM order_detail od
+        LEFT JOIN product p ON od.product_id = p.id
+        LEFT JOIN orders o ON od.order_id = o.id
+        LEFT JOIN user_address ua ON od.user_address_id = ua.id AND od.user_address_id != 0
+        WHERE od.order_id = #{orderId}
+    </select>
+
+    <!-- 获取所有订单详情（除待付款订单，包含商品和地址信息） -->
+    <select id="getAllOrderDetailsWithInfo" resultType="com.example.oldproject.DTO.OrderDetailDTO">
+        SELECT 
+            od.id,
+            od.order_id as orderId,
+            od.product_id as productId,
+            p.name as productName,
+            p.image as productImage,
+            p.description as productDesc,
+            od.quantity,
+            od.price,
+            (od.quantity * od.price) as totalPrice,
+            od.user_address_id as userAddressId,
+            CASE 
+                WHEN od.user_address_id = 0 THEN '自提柜'
+                WHEN ua.id IS NOT NULL THEN ua.address
+                ELSE '地址信息不存在'
+            END as addressDetail,
+            CASE 
+                WHEN od.user_address_id = 0 THEN '自提'
+                WHEN ua.id IS NOT NULL THEN ua.recipient_name
+                ELSE '收件人信息不存在'
+            END as recipientName,
+            CASE 
+                WHEN od.user_address_id = 0 THEN ''
+                WHEN ua.id IS NOT NULL THEN ua.phone
+                ELSE ''
+            END as recipientPhone,
+            o.status as orderStatus,
+            DATE_FORMAT(o.created_at, '%Y-%m-%d %H:%i:%s') as createdAt
+        FROM order_detail od
+        LEFT JOIN product p ON od.product_id = p.id
+        LEFT JOIN orders o ON od.order_id = o.id
+        LEFT JOIN user_address ua ON od.user_address_id = ua.id AND od.user_address_id != 0
+        WHERE o.status != '待付款'
+        ORDER BY o.created_at DESC
+    </select>
+
+</mapper>

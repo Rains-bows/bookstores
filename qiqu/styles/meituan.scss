@@ -1,0 +1,145 @@
+// 美团主题色
+$mt-primary: #FFD161;  // 主色调黄色
+$mt-green: #06C1AE;    // 绿色
+$mt-red: #FF4444;      // 红色
+$mt-orange: #FE8C00;   // 橙色
+$mt-gray: #999;        // 灰色文字
+
+// 阴影效果
+@mixin box-shadow {
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+// 通用样式
+.mt-section {
+  background: #fff;
+  border-radius: 16rpx;
+  margin: 20rpx;
+  padding: 30rpx;
+  @include box-shadow;
+  
+  .section-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20rpx;
+    
+    .iconfont {
+      font-size: 40rpx;
+      color: $mt-orange;
+      margin-right: 10rpx;
+    }
+    
+    text {
+      font-size: 32rpx;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+}
+
+.mt-tag {
+  background: #FFF5E6;
+  color: $mt-orange;
+  font-size: 24rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+}
+
+.mt-btn {
+  background: $mt-primary;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 40rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  
+  &.plain {
+    background: #fff;
+    border: 2rpx solid $mt-primary;
+  }
+}
+
+.mt-price {
+  color: $mt-red;
+  font-weight: bold;
+  
+  &::before {
+    content: '¥';
+    font-size: 0.8em;
+  }
+}
+
+// 列表项样式
+.mt-list-item {
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 2rpx;
+  display: flex;
+  align-items: center;
+  
+  &:active {
+    background: #f8f8f8;
+  }
+  
+  .item-content {
+    flex: 1;
+  }
+  
+  .item-arrow {
+    color: #ccc;
+    font-size: 32rpx;
+  }
+}
+
+// 输入框样式
+.mt-input {
+  background: #f8f8f8;
+  height: 88rpx;
+  border-radius: 44rpx;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  
+  &::placeholder {
+    color: #999;
+  }
+}
+
+// 底部固定按钮
+.mt-bottom-btn {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100rpx;
+  background: #fff;
+  padding: 20rpx;
+  @include box-shadow;
+  z-index: 100;
+}
+
+// 分割线
+.mt-divider {
+  height: 1rpx;
+  background: #eee;
+  margin: 20rpx 0;
+}
+
+// 标签样式
+.mt-label {
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+  
+  &.primary {
+    background: rgba($mt-primary, 0.1);
+    color: $mt-orange;
+  }
+  
+  &.success {
+    background: rgba($mt-green, 0.1);
+    color: $mt-green;
+  }
+} 
